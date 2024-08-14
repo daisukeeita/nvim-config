@@ -1,12 +1,11 @@
-require('config.keybinds')
-require('config.settings')
-require('config.bootstrap')
-require('config.ui')
+require("config.keybinds")
+require("config.settings")
+require("config.bootstrap")
+require("config.ui")
 
- -- LSP SERVERS AND COMPLETION --
-require('config.lsp.mason')
+-- LSP SERVERS AND COMPLETION --
+require("config.coding")
+require("config.lsp.mason")
+require("config.lsp.servers")
 
- -- FORMATTER --
-require('config.formatter')
-
-vim.cmd.colorscheme "catppuccin"
+vim.cmd.colorscheme("catppuccin")
