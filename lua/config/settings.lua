@@ -1,5 +1,4 @@
 local opt = vim.opt
-
 opt.clipboard = "unnamedplus"
 opt.completeopt = { "menu", "menuone", "noinsert", "noselect" }
 
@@ -42,8 +41,12 @@ opt.encoding = "UTF-8"
 opt.swapfile = false
 opt.title = true
 
--- DIAGNOSTIC CONFIGURATION --
+-- DIAGNOSTIC CONFIGURATIONS --
 vim.diagnostic.config({
+  underline = true,
+  update_in_insert = false,
+  severity_sort = true,
+  virtual_text = false,
   signs = {
     text = {
       [vim.diagnostic.severity.ERROR] = "󰅚 ",
@@ -53,15 +56,11 @@ vim.diagnostic.config({
     },
   },
   float = {
-    enable = true,
+    scope = "cursor",
     border = "rounded",
-    focusable = false,
+    focusable = true,
     style = "minimal",
     source = "if_many",
-    prefix = " 󱅶 ",
+    prefix = "󱅶 ",
   },
-  severity_sort = true,
-  underline = true,
-  update_in_insert = false,
-  virtual_text = false,
 })
