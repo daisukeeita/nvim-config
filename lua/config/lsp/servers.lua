@@ -27,3 +27,45 @@ require("lspconfig").lua_ls.setup({
     },
   },
 })
+
+-------------------------------------------------
+-----------       TSSERVER SETUP      -----------
+-------------------------------------------------
+require("lspconfig").tsserver.setup({
+  on_attach = function(client, bufnr)
+    if client.server_capabilities.inlayHintProvider then
+      vim.lsp.inlay_hint.enable(true, { bufnr })
+    end
+  end,
+  single_file_support = false,
+  settings = {
+    javascript = {
+      inlayHints = {
+        includeInlayParameterNameHints = "all",
+        includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+        includeInlayFunctionParameterTypeHints = true,
+        includeInlayVariableTypeHints = false,
+        includeInlayPropertyDeclarationTypeHints = true,
+        includeInlayFunctionLikeReturnTypeHints = true,
+        includeInlayEnumMemberValueHints = true,
+      },
+    },
+    typescript = {
+      inlayHints = {
+        includeInlayParameterNameHints = "literal",
+        includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+        includeInlayFunctionParameterTypeHints = true,
+        includeInlayVariableTypeHints = false,
+        includeInlayPropertyDeclarationTypeHints = true,
+        includeInlayFunctionLikeReturnTypeHints = true,
+        includeInlayEnumMemberValueHints = true,
+      },
+    },
+  },
+  init_options = {
+    hostInfo = "neovim",
+  },
+  root_dir = function(...)
+    return require("lspconfig.util").root_pattern(".git")(...)
+  end,
+})
