@@ -92,17 +92,7 @@ cmp.setup.cmdline("/", {
 })
 
 cmp.setup.cmdline(":", {
-  mapping = cmp.mapping.preset.cmdline({
-    ["<C-j>"] = {
-      c = function(fallback)
-        if cmp.visible() then
-          cmp.select_next_item()
-        else
-          fallback()
-        end
-      end,
-    },
-  }),
+  mapping = cmp.mapping.preset.cmdline(),
   sources = cmp.config.sources({
     { name = "path" },
   }, {
@@ -155,3 +145,8 @@ require("mini.pairs").setup({
   -- better deal with markdown code blocks
   markdown = true,
 })
+
+----------------------------------------------------
+---------          TELESCOPE UI            ---------
+----------------------------------------------------
+require("telescope").setup({})
