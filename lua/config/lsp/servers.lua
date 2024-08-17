@@ -29,9 +29,20 @@ require("lspconfig").lua_ls.setup({
 })
 
 -------------------------------------------------
+-----------       ESLINT SETUP        -----------
+-------------------------------------------------
+require("lspconfig").eslint.setup({
+  capabilities = capabilities,
+  settings = {
+    packageManager = "npm",
+  },
+})
+
+-------------------------------------------------
 -----------       TSSERVER SETUP      -----------
 -------------------------------------------------
 require("lspconfig").tsserver.setup({
+  capabilities = capabilities,
   on_attach = function(client, bufnr)
     if client.server_capabilities.inlayHintProvider then
       vim.lsp.inlay_hint.enable(true, { bufnr })
@@ -65,7 +76,4 @@ require("lspconfig").tsserver.setup({
   init_options = {
     hostInfo = "neovim",
   },
-  root_dir = function(...)
-    return require("lspconfig.util").root_pattern(".git")(...)
-  end,
 })
