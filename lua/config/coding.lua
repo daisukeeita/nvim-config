@@ -34,6 +34,9 @@ require("nvim-treesitter.configs").setup({
 ----------------------------------------------------
 ---------          COMPLETION UI           ---------
 ----------------------------------------------------
+require("luasnip").setup({})
+require("luasnip.loaders.from_vscode").lazy_load()
+
 local cmp = require("cmp")
 require("cmp").setup({
   snippet = {
@@ -49,6 +52,8 @@ require("cmp").setup({
   sources = cmp.config.sources({
     { name = "luasnip" },
     { name = "nvim_lsp" },
+    { name = "path" },
+    { name = "emoji" },
   }, {
     { name = "buffer" },
   }),
