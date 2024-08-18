@@ -34,15 +34,15 @@ require("nvim-treesitter.configs").setup({
 ----------------------------------------------------
 ---------          COMPLETION UI           ---------
 ----------------------------------------------------
-require("luasnip").setup({})
-require("luasnip.loaders.from_vscode").lazy_load()
 
 local cmp = require("cmp")
 require("cmp").setup({
+  view = {
+    entries = "custom",
+  },
   snippet = {
     expand = function(args)
       require("luasnip").lsp_expand(args.body)
-      --vim.snippet.expand(args.body)
     end,
   },
   window = {
@@ -53,7 +53,6 @@ require("cmp").setup({
     { name = "luasnip" },
     { name = "nvim_lsp" },
     { name = "path" },
-    { name = "emoji" },
   }, {
     { name = "buffer" },
   }),
@@ -89,25 +88,23 @@ require("cmp").setup({
   },
 })
 
-cmp.setup.cmdline("/", {
+-- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
+cmp.setup.cmdline({ "/", "?" }, {
   mapping = cmp.mapping.preset.cmdline(),
   sources = {
     { name = "buffer" },
   },
 })
 
+-- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline(":", {
   mapping = cmp.mapping.preset.cmdline(),
   sources = cmp.config.sources({
     { name = "path" },
   }, {
-    {
-      name = "cmdline",
-      option = {
-        ignore_cmds = { "Man", "!" },
-      },
-    },
+    { name = "cmdline" },
   }),
+  matching = { disallow_symbol_nonprefix_matching = false },
 })
 
 ----------------------------------------------------
