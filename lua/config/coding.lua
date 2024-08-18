@@ -15,7 +15,7 @@ require("conform").setup({
 ---------          TREESITTER UI           ---------
 ----------------------------------------------------
 require("nvim-treesitter.configs").setup({
-  ensure_installed = { "lua", "javascript", "typescript" },
+  ensure_installed = { "lua", "javascript", "typescript", "markdown", "markdown_inline", "html" },
   sync_install = false,
   auto_install = true,
   highlight = { enable = true },
@@ -152,3 +152,19 @@ require("mini.pairs").setup({
 ---------          TELESCOPE UI            ---------
 ----------------------------------------------------
 require("telescope").setup({})
+
+----------------------------------------------------
+---------           MARKDOWN UI            ---------
+----------------------------------------------------
+require("markview").setup({
+  modes = { "n", "i", "no", "c" },
+  hybrid_modes = { "i" },
+
+  -- This is nice to have
+  callbacks = {
+    on_enable = function(_, win)
+      vim.wo[win].conceallevel = 2
+      vim.wo[win].concealcursor = "nc"
+    end,
+  },
+})

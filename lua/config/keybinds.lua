@@ -61,3 +61,18 @@ keymap.set("n", "<leader>ffb", ":Telescope buffers<CR>", opts)
 keymap.set("n", "<leader>tgc", ":Telescope git_commits<CR>", opts)
 keymap.set("n", "<leader>fb", ":Telescope file_browser<CR>", opts)
 keymap.set("n", "<leader>fcb", ":Telescope file_browser path=%:p:h select_buffer=true<CR>", opts)
+
+-----------------------------------------------------------------------
+----------                LUASNIP KEYMAPS                  ----------
+-----------------------------------------------------------------------
+keymap.set({ "i", "s" }, "<C-k>", function()
+  if require("luasnip").expandable() then
+    return require("luasnip").expand()
+  else
+    return require("luasnip").jump(1)
+  end
+end)
+
+keymap.set({ "i", "s" }, "<C-j>", function()
+  return require("luasnip").jump(-1)
+end, opts)
