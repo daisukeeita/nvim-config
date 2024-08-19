@@ -63,3 +63,28 @@ vim.api.nvim_create_autocmd("LspAttach", {
     bufmap("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<cr>")
   end,
 })
+
+-- DISABLE INDENTSCOPE TO CERTAIN FILETYPES --
+vim.api.nvim_create_autocmd({ "FileType" }, {
+  callback = function()
+    local ignore_filetypes = {
+      "aerial",
+      "dashboard",
+      "help",
+      "lazy",
+      "leetcode.nvim",
+      "mason",
+      "neo-tree",
+      "NvimTree",
+      "neogitstatus",
+      "notify",
+      "startify",
+      "toggleterm",
+      "Trouble",
+      "markdown",
+    }
+    if vim.tbl_contains(ignore_filetypes, vim.bo.filetype) then
+      vim.b.miniindentscope_disable = true
+    end
+  end,
+})

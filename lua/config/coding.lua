@@ -167,4 +167,25 @@ require("markview").setup({
       vim.wo[win].concealcursor = "nc"
     end,
   },
+  block_quotes = { enable = true },
+  Checkboxes = { enable = true, checked = {
+    text = "✔",
+    hl = "TabLineSel",
+  } },
+  code_block = {
+    enable = true,
+    style = "simple",
+  },
+  horizontal_rules = { enable = true },
+  html = { enable = true },
+  inline_codes = {
+    enable = true,
+    hl = "DiagnosticOk",
+  },
+  links = { enable = true },
+  list_items = {
+    enable = true,
+    shift_width = 2,
+    indent_size = 2,
+  },
 })
